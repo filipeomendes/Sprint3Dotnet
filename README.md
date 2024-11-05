@@ -1,4 +1,4 @@
-# Sprint3Dotnet - API Web
+# Sprint4Dotnet - ML
 
 ## Integrantes
 - Fernando Paparelli Aracena rm551022
@@ -14,6 +14,7 @@
 - **Banco de Dados Oracle:** Para operações CRUD (Create, Read, Update, Delete).
 - **Swagger/OpenAPI:** Documentação interativa dos endpoints.
 - **Padrão de Criação:** Utilização do padrão Singleton para o gerenciador de configurações.
+- **Machine Learning:** Implementação de um modelo de previsão de produtos utilizando o ML.NET.
 
 ### Arquitetura da API
 
@@ -28,6 +29,14 @@ Essa abordagem é adequada para projetos de menor escala ou fases iniciais, onde
 ### Padrão de Criação
 
 Foi utilizado o padrão **Singleton** para o gerenciador de configurações. Este padrão assegura que haja uma única instância da configuração, gerenciando a configuração da aplicação de maneira centralizada e eficiente.
+
+### Machine Learning
+
+Implementamos um modelo de previsão de produtos utilizando o ML.NET. A API carrega um modelo treinado a partir de um arquivo zip e, caso o modelo não exista, inicia um processo de treinamento utilizando dados armazenados em um arquivo CSV. O modelo prevê o nome do produto com base em suas características (categoria e preço).
+
+- **Dados de Treinamento:** Os dados de produtos são carregados a partir de um arquivo CSV. 
+- **Pipeline de Treinamento:** O pipeline inclui transformação de dados, codificação categórica e treinamento de um classificador.
+- **Previsões:** Através de um endpoint específico, é possível enviar dados de um novo produto e receber uma previsão do nome do produto com base no modelo treinado.
 
 ### Diferenças entre as Arquiteturas
 
