@@ -7,7 +7,7 @@
 - Victor Luca do Nascimento Queiroz rm551886
 - Vinicius Pedro de Souza rm550907
 
-## Implementação da API
+## Implementação da API e ML
 
 ### Tecnologias Utilizadas
 - **ASP.NET Core Web API:** Framework para desenvolvimento da API.
@@ -231,13 +231,73 @@ A API oferece endpoints para os recursos **Clientes**, **Lojas** e **Produtos**.
   - **Descrição:** Remove um produto pelo ID.
   - **Exemplo de Resposta:** Não há corpo na resposta.
 
-### Códigos de Resposta HTTP
+### Endpoints de Autenticação
 
-| Código | Descrição |
-|--------|-----------|
-| 200    | Requisição bem-sucedida |
-| 400    | Requisição malformada |
-| 404    | Recurso não encontrado |
-| 500    | Erro interno do servidor |
+#### Login
+- **POST** `/api/Auth/login`
+  - **Descrição:** Autentica um usuário e retorna um token JWT.
+  - **Exemplo de Requisição:**
+    ```json
+    {
+      "Username": "filipe",
+      "Password": "1234"
+    }
+    ```
+  - **Exemplo de Resposta:**
+    ```json
+    {
+      "token": "eyJhbGciOiJIUzI1NiIsInR..."
+    }
+    ```
 
----
+### Endpoints de Machine Learning
+
+#### Previsão de Produtos
+- **POST** `/api/ML/PreverProduto`
+  - **Descrição:** Envia dados de um novo produto e recebe uma previsão do nome do produto com base no modelo treinado.
+  - **Exemplo de Requisição:**
+    ```json
+    {
+      "Categoria": "Analgesico",
+      "Preco": 15.99
+    }
+    ```
+  - **Exemplo de Resposta:**
+    ```json
+    {
+      "NomeProdutoPrevisto": "Paracetamol"
+    }
+    ```
+
+### Resumo dos Endpoints
+
+- **Clientes:**
+  - **GET** `/api/Clientes`: Retorna uma lista de clientes.
+  - **POST** `/api/Clientes`: Adiciona um novo cliente.
+  - **GET** `/api/Clientes/{id}`: Retorna um cliente pelo ID.
+  - **PUT** `/api/Clientes/{id}`: Atualiza as informações de um cliente.
+  - **DELETE** `/api/Clientes/{id}`: Remove um cliente pelo ID.
+
+- **Lojas:**
+  - **GET** `/api/Lojas`: Retorna uma lista de lojas.
+  - **POST** `/api/Lojas`: Adiciona uma nova loja.
+  - **GET** `/api/Lojas/{id}`: Retorna uma loja pelo ID.
+  - **PUT** `/api/Lojas/{id}`: Atualiza as informações de uma loja.
+  - **DELETE** `/api/Lojas/{id}`: Remove uma loja pelo ID.
+
+- **Produtos:**
+  - **GET** `/api/Produtos`: Retorna uma lista de produtos.
+  - **POST** `/api/Produtos`: Adiciona um novo produto.
+  - **GET** `/api/Produtos/{id}`: Retorna um produto pelo ID.
+  - **PUT** `/api/Produtos/{id}`: Atualiza as informações de um produto.
+  - **DELETE** `/api/Produtos/{id}`: Remove um produto pelo ID.
+
+- **Autenticação:**
+  - **POST** `/api/Auth/login`: Para autenticar usuários e obter um token.
+
+- **Machine Learning:**
+  - **POST** `/api/ML/PreverProduto`: Para prever o nome do produto com base em suas características.
+
+### Considerações Finais
+
+Esse projeto visa integrar a gestão de produtos, clientes e lojas com um sistema de machine learning para recomendações, contribuindo para a eficiência na operação de farmácias. A arquitetura monolítica, junto com a implementação de testes e documentação adequada, garante uma base sólida para futuras expansões e melhorias.
